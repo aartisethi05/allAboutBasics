@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2 id="print"></h2>
+</body>
+<script>
+    var result=true;
+    const arr = [1,2];
+    const obj = {'str' : 'Aarti'};
+
+    (function() {
+      
+      console.log(result)
+      if(result===null)
+       result=0
+      else if(result===undefined)
+       result=10
+      else if(result===true)
+       result=10
+      console.log(result) 
+       debugger
+      arr.push(3,4)
+      obj.str="Sethi"
+      callFunction()
+      document.getElementById('print').innerHTML = "Result is:" + result
+      document.getElementById('print').innerHTML += "\n Array is:" + arr
+      document.getElementById('print').innerHTML += " Object is:" + obj.str
+    })();
+
+    function callFunction(){
+        let a=10
+        let b=20
+        //let a=5 error
+        result = a + b;
+    }
+    </script>
+</html>
