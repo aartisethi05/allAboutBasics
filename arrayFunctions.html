@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="userInput" placeholder="Enter Text">
+    <button type="submit" onclick="concat()">Concat</button>
+    <button type="submit" onclick="join()">Join</button>
+    <button type="submit" onclick="split()">Split</button>
+    <button type="submit" onclick="sort()">Sort</button>
+    <button type="submit" onclick="reverse()">Reverse</button>
+    <p id="displayText"></p>
+
+    <script>
+        function split(){
+            let output=splitFunction();
+            document.getElementById('displayText').innerHTML = "Array after split() is: " + output;
+
+        }
+       function splitFunction(){
+        let str = document.getElementById('userInput').value;
+        console.log(str.split(","));
+        return str.split(",");
+       }
+
+       function join(){
+        let arr=splitFunction();
+        document.getElementById('displayText').innerHTML = "Array after split() is: " + arr;
+        console.log(arr);
+        console.log(arr.join());
+        document.getElementById('displayText').innerHTML+= "<br>String after join() is: " + arr.join();
+       }
+
+       function concat(){
+        let arr=splitFunction();
+        let myArray = ["a","a","r","t","i"];
+        document.getElementById('displayText').innerHTML = "Array after split() is: " + arr;
+        console.log(arr);
+        console.log(myArray.concat(arr));
+        document.getElementById('displayText').innerHTML+= "<br>Array after concat() is: " + myArray.concat(arr);
+       }
+
+       function sort(){
+        let arr=splitFunction();
+        document.getElementById('displayText').innerHTML = "Array after split() is: " + arr;
+        console.log(arr);
+        console.log(arr.sort());
+        document.getElementById('displayText').innerHTML+= "<br>Array after sort() is: " + arr.sort();
+        document.getElementById('displayText').innerHTML+= "<br>Original Array is: " + arr;
+       }
+
+       function reverse(){
+        let arr=splitFunction();
+        document.getElementById('displayText').innerHTML = "Array after split() is: " + arr;
+        console.log(arr);
+       // console.log(arr.reverse()); //changes the ouput bcz changes the original array
+        document.getElementById('displayText').innerHTML+= "<br>Array after reverse() is: " + arr.reverse();
+        document.getElementById('displayText').innerHTML+= "<br>Original Array is: " + arr;
+       }
+    </script>
+</body>
+</html>
