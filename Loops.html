@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="forEachExample([1,2,3,4])">
+    <script>
+        function mapExample(arr){
+           if(Array.isArray(arr)){
+            arr.map( num => num*2);
+            console.log(arr);
+           }
+        }
+        function forEachExample(arr){
+           if(Array.isArray(arr)){
+            arr.forEach( num => num*2);
+            console.log(arr);
+           }
+        }
+    </script>
+</body>
+</html>
