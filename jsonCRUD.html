@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <table id="tab">
+            
+        </table>
+    <button type="submit" onclick="insert()">Insert</button>
+    </div>
+    <div id="insertForm" style="display: none;">
+       <input type="text" name="name" placeholder="Enter your name" class="formData"><br>
+       <input type="text" name="designation" class="formData" placeholder="Enter your designation"><br>
+       <label>Enter two projects</label>
+       <input type="text" name="project1" class="formData" placeholder="Enter your project 1">
+       <input type="text" name="project2" class="formData" placeholder="Enter your project 2"><br>
+       <button type="submit" onclick="submitForm()">Submit</button>
+    </div>
+    <div id="editForm" style="display: none;">
+        <input type="text" name="name" placeholder="Enter your name" class="editData"><br>
+        <input type="text" name="designation" class="editData" placeholder="Enter your designation"><br>
+        <label>Enter two projects</label>
+        <input type="text" name="project1" class="editData" placeholder="Enter your project 1">
+        <input type="text" name="project2" class="editData" placeholder="Enter your project 2"><br>
+        <input type="hidden" name="id" class="editData"><br>
+        <button type="submit" onclick="updateForm()">Submit</button>
+     </div>
+
+    <script>
+      var data = [];
+      var i=0;
+      function insert(){
+        document.getElementById('main').style.display = "none";
+        document.getElementById('insertForm').style.display = "block";     
+      }
+      function submitForm(){
+        let name = document.getElementsByClassName('formData')[0].value;
+        let designation = document.getElementsByClassName('formData')[1].value;
+        let pro_1 = document.getElementsByClassName('formData')[2].value;
+        let pro_2 = document.getElementsByClassName('formData')[3].value;
+        let emp = {
+            "id": i,
+            "name": name,
+            "designation" : designation,
+            "projects" : [{
+                "pro_1" : pro_1,
+                "pro_2" : pro_2
+             }
+            ]
+        }
+        data[i] = emp;
+        i++;
+        document.getElementById('main').style.display = "block";
+        document.getElementById('insertForm').style.display = "none";  
+       alert('Form submitted');
+       console.log(data);
+        viewData();
+      }
+      function viewData(){
+        let html = '<tr><th>Name</th><th>Designation</th><th>Project 1</th><th>Project 2</th></tr>';
+       data.map( value=>
+         html +=`<tr><td><input type="hidden" value="${value['id']}"> ${value['name']}</td><td>${value['designation']}</td><td>${value['projects'][0]['pro_1']}</td><td>${value['projects'][0]['pro_2']}</td>
+         <td><button type="submit" onclick="editRecord(${data['id']})">Edit</button></td><td><button type="submit" onclick="deleteRecord(${data['id']})">Delete</button></td></tr>`
+       );
+       document.getElementById('tab').innerHTML = html;
+      }
+
+      function editRecord(id){
+        let record = data.map(value => value['id']===id);
+        console.log(record);
+         document.getElementsByClassName('editData')[0].value = record['name'];
+         document.getElementsByClassName('editData')[1].value = record['designation'];
+         document.getElementsByClassName('editData')[2].value = record['projects'][0][pro_1];
+         document.getElementsByClassName('editData')[3].value = record['projects'][0][pro_2];
+         document.getElementsByClassName('editData')[4].value = record['id'];
+
+        document.getElementById('main').style.display = "none";
+        document.getElementById('editForm').style.display = "block";
+
+      }
+      function updateForm(){
+        let name = document.getElementsByClassName('editData')[0].value;
+        let designation = document.getElementsByClassName('editData')[1].value;
+        let pro_1 = document.getElementsByClassName('editData')[2].value;
+        let pro_2 = document.getElementsByClassName('editData')[3].value;
+        let id = document.getElementsByClassName('editData')[4].value;
+        let emp = {
+            "id": id,
+            "name": name,
+            "designation" : designation,
+            "projects" : [{
+                "pro_1" : pro_1,
+                "pro_2" : pro_2
+             }
+            ]
+        }
+        data[id] = emp;
+        document.getElementById('main').style.display = "block";
+        document.getElementById('insertForm').style.display = "none";  
+       alert('Form updated');
+       console.log(data);
+        viewData();
+      }
+      function deleteRecord(id){   
+         data.splice(id,1); 
+         console.log(data);
+         viewData();
+        }
+    </script>
+</body>
+</html>
