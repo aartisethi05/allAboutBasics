@@ -14,6 +14,8 @@
         console.log(response);
         let jsondata =await  response.json();
         console.log(jsondata);
+        jsondata['data'].map(value=>console.log(value));
+    
         }
     </script>
 </body>
