@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body onload="hitAPIPost()">
+    <script>
+      async function hitAPIGet(){
+        let url="http://dummy.restapiexample.com/api/v1/employees";
+        console.log(url);
+        let response = await  fetch(url);
+        console.log(response);
+        let jsondata =await  response.json();
+        console.log(jsondata);
+        }
+
+      async function hitAPIPost(){
+        let url="http://dummy.restapiexample.com/api/v1/employees";
+        console.log(url);
+        let response = await  fetch(url,{
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({'name':'Aarti'})}
+        );
+        console.log(response);
+        let jsondata =await  response.json();
+        console.log(jsondata);
+        };
+    </script>
+</body>
+</html>
