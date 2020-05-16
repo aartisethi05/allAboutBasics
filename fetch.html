@@ -4,8 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table,th ,td{
+          border: 2px solid;
+        }
+        table{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
 </head>
 <body onload="hitAPIGet()">
+    <table id="main" class="design">
+        <th>Name</th><th>Salary</th><th>Age</th>
+    </table>
     <script>
       async function hitAPIGet(){
         let url="http://dummy.restapiexample.com/api/v1/employees";
@@ -14,8 +26,11 @@
         console.log(response);
         let jsondata =await  response.json();
         console.log(jsondata);
-        jsondata['data'].map(value=>console.log(value));
-    
+        let html='';
+        jsondata['data'].map(value=>
+        html+=`<tr><td>${value['employee_name']}</td><td>${value['employee_salary']}</td><td>${value['employee_age']}</td></tr>`
+        );
+        document.getElementById('main').innerHTML+=html;
         }
     </script>
 </body>
